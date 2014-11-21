@@ -21,30 +21,17 @@ func main() {
 		      {70, 11, 33, 28, 77, 73, 17, 78, 39, 68, 17, 57},
 		    {91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48},
 		  {63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31},
-		{04, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23},
+		{ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23},
 	}
 	
-	var accum []int
-	recur(triangle, 0, 0, 0, &accum)
-	
-	biggest := 0
-	for i := range accum {
-		if accum[i] > biggest {
-			biggest = accum[i]
+	for a := len(triangle)-2; a >= 0; a-- {
+		for b := 0; b < len(triangle[a]); b++ {
+			if triangle[a+1][b] > triangle[a+1][b+1] {
+				triangle[a][b] += triangle[a+1][b]
+			} else {
+				triangle[a][b] += triangle[a+1][b+1]
+			}
 		}
 	}
-	fmt.Println(biggest)
-}
-
-func recur(tri [][]int, a int, b int, total int, accum *[]int) {
-//	fmt.Println(a, b)
-	if a == (len(tri) - 1) {
-		*accum = append(*accum, total + tri[a][b])
-		return
-	}
-	// go left
-	total += tri[a][b]
-	recur(tri, a + 1, b, total, accum)
-	// go right
-	recur(tri, a + 1, b + 1, total, accum)
+	fmt.Println(triangle[0][0])
 }
