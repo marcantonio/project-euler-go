@@ -19,7 +19,7 @@ func main() {
 }
 
 func isPrime(n int, ch chan bool) {
-	max := round(math.Sqrt(float64(n)))
+	max := round(math.Sqrt(math.Abs(float64(n))))
 	for x := 2; x <= max; x++ {
 		if (n % x) == 0 {
 			ch <- false
