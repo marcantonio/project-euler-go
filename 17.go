@@ -69,7 +69,7 @@ func main() {
 				if (string(strNum[idx+1]) != "0") || (string(strNum[idx+2]) != "0") {
 					list = append(list, "and")
 				}
-			case 4: // thousnad's place
+			case 4: // thousand's place
 				list = append(list, numberMap[digit] + " thousand")
 			}
 		}
